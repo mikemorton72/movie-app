@@ -5,20 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-10.times do
+100.times do
   actor = Actor.new(
     first_name: FFaker::Name.first_name,
     last_name: FFaker::Name.last_name,
-    known_for: FFaker::Movie.title
+    known_for: FFaker::Movie.title,
+    gender: FFaker::Gender.random,
+    age: rand(1..120)
   )
   actor.save
 end
 
-10.times do
+100.times do
   movie = Movie.new(
     title: FFaker::Movie.title, 
     year: FFaker::Vehicle.year, 
-    plot: FFaker::Lorem.paragraph
+    plot: FFaker::Lorem.paragraph,
+    director: FFaker::Name.name,
+    english: FFaker::Boolean.maybe,
   )
   movie.save
 end
