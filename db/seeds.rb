@@ -13,3 +13,12 @@
   )
   actor.save
 end
+
+10.times do
+  movie = Movie.new(
+    title: FFaker::Movie.title, 
+    year: FFaker::Vehicle.year, 
+    plot: FFaker::Lorem.paragraph
+  )
+  movie.save
+end
