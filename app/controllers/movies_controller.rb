@@ -15,10 +15,13 @@ class MoviesController < ApplicationController
       director: params[:director],
       english: params[:english]
     )
-    movie.save
-    render json: movie.as_json
+    if movie.save
+      render json: movie.as_json
+    else
+      render json: movie.errors.full_messages
+    end
   end
-
+  
   def update
     movie = Movie.find_by(id: params[:id])
     movie.title = params[:title] || movie.title
@@ -26,7 +29,10 @@ class MoviesController < ApplicationController
     movie.plot = params[:plot] || movie.plot
     movie.director = params[:director] || movie.director
     movie.english = params[:english] || movie.english
-    movie.save
-    render json: movie.as_json
+    if movie.save
+      render json: movie.as_json
+    else
+      render json: movie.errors.full_messages
+    end
   end
 end
