@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_admin, except: [:index, :show]
   def index
     render json: Movie.order(:title)
   end
