@@ -1,11 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
+# Movies
 20.times do
   movie = Movie.new(
     title: FFaker::Movie.title, 
@@ -17,6 +10,7 @@
   movie.save
 end
 
+# Actors
 100.times do
   actor = Actor.new(
     first_name: FFaker::Name.first_name,
@@ -28,3 +22,28 @@ end
   )
   actor.save
 end
+
+# Genres
+genres = ["Comedy", "Action", "Thriller", "Animated", "Documentary", "Short-Film"]
+genres.each {|genre| Genre.create(name: genre)}
+
+# Users
+users = ["Bob", "Bill", "Sue", "Sally"]
+users.each do |user|
+  User.create(
+    name: user, 
+    email: "#{user.downcase}@gmail.com", 
+    password: "password"
+  )
+end
+
+# Add two Genres to Each Movie in genre_movie table
+Movie.all.each do |movie|
+  2.times do
+    GenreMovie.create(
+      movie_id: movie.id,
+      genre_id: Genre.all.sample.id
+    )
+  end
+end
+
