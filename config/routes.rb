@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   post "movies" => "movies#create"
   patch "movies/:id" => "movies#update"
 
+  # For GenreMovies
+  post "/genre_movies" => "genre_movies#create"
+
   # For User Model
   post "/users" => "users#create"
 
