@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
       year: params[:year],
       plot: params[:plot],
       director: params[:director],
-      english: params[:english]
+      english: params[:english] || true
     )
     if movie.save
       render json: movie
